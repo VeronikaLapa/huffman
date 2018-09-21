@@ -80,6 +80,9 @@ huff_tree::huff_tree(bit_string& str, size_t &ind) {
 }
 
 void huff_tree::build_tree(node *crt_node, bit_string& str, size_t &ind, vector<node *> &list) {
+    if (ind > 512) {
+        throw corrupt_file();
+    }
     if (str.get_bit(ind) && crt_node->left == nullptr) {
         crt_node->left = new node();
         build_tree(crt_node->left, str, ++ind, list);

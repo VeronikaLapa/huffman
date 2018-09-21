@@ -19,7 +19,9 @@ int main(int argc, char *argv[]) {
                 file_encoder enc(argv[2], argv[3]);
                 enc.encode_all();
             }
-        } catch (exception e) {
+        } catch (corrupt_file& e) {
+            cout << e.what();
+        } catch (file_exc& e) {
             cout << e.what();
         }
     }
