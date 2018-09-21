@@ -11,11 +11,11 @@ file_writer::~file_writer() {
     output_file.close();
 }
 
-void file_writer::write_string(std::string str) {
+void file_writer::write_string(std::string& str) {
     output_file.write(str.c_str(), str.size());
 }
 
-void file_writer::write_bit_string(bit_string str) {
+void file_writer::write_bit_string(bit_string& str) {
     if (str.size() > 0) {
         std::string data = str.to_string();
         std::string size_str;

@@ -79,27 +79,7 @@ huff_tree::huff_tree(bit_string& str, size_t &ind) {
     build_dict();
 }
 
-/*
-void huff_tree::build_tree(node *crt_node, bit_string str, size_t &ind, vector<node *> &list) {
-    if (str.get_bit(ind) && crt_node->left == nullptr) {
-        crt_node->left = new node();
-        build_tree(crt_node->left, str, ++ind, list);
-        if (str.get_bit(ind) && crt_node->right == nullptr) {
-            crt_node->right = new node();
-            build_tree(crt_node->right, str, ++ind, list);
-        }
-    }
-    if (!str.get_bit(ind) && crt_node->is_leaf()) {
-        list.push_back(crt_node);
-        ++ind;
-    } else if (str.get_bit(ind)) {
-        throw corrupt_file();
-    } else {
-        ++ind;
-    }
-}
-*/
-void huff_tree::build_tree(node *crt_node, bit_string str, size_t &ind, vector<node *> &list) {
+void huff_tree::build_tree(node *crt_node, bit_string& str, size_t &ind, vector<node *> &list) {
     if (str.get_bit(ind) && crt_node->left == nullptr) {
         crt_node->left = new node();
         build_tree(crt_node->left, str, ++ind, list);
@@ -163,30 +143,7 @@ void huff_tree::build_dict() {
 bit_code huff_tree::get_code(char ch) {
     return (dict.find(ch)->second);
 }
-/*
-void huff_tree::tree_struct_to_string(node *crt_node, bit_string &order, bit_string &tree) {
-    if (crt_node == nullptr) {
-        tree.add_bit(0);
-        return;
-    } else if (crt_node == root) {
-        tree.add_bit(1);
-    }
-    if (crt_node->is_leaf()) {
-        order.add_code(crt_node->symbol);
-        tree.add_bit(0);
-        return;
-    }
-    if (crt_node->left != nullptr) {
-        tree.add_bit(1);
-        tree_struct_to_string(crt_node->left, order, tree);
-    }
-    if (crt_node->right != nullptr) {
-        tree.add_bit(1);
-        tree_struct_to_string(crt_node->right, order, tree);
-    }
-    tree.add_bit(0);
-}
-*/
+
 void huff_tree::tree_struct_to_string(node *crt_node, bit_string &order, bit_string &tree) {
     if (crt_node == nullptr) {
         tree.add_bit(0);
@@ -209,8 +166,7 @@ void huff_tree::tree_struct_to_string(node *crt_node, bit_string &order, bit_str
     }
     //tree.add_bit(0);
 }
-char huff_tree::get_char(bit_string str, size_t &ind) {
-
+char huff_tree::get_char(bit_string& str, size_t &ind) {
     node *crt_node = root;
     while (!crt_node->is_leaf() && ind <= str.size()) {
         if (!str.get_bit(ind)) {

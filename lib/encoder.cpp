@@ -3,7 +3,7 @@
 using namespace std;
 encoder::encoder() {}
 
-void encoder::add_to_freq(string str) {
+void encoder::add_to_freq(string& str) {
     for (char ch : str) {
         freq.add_char(ch);
     }
@@ -18,7 +18,7 @@ bit_string encoder::encode(string str) {
     return ans;
 }
 
-bit_string encoder::encode_string(string str) {
+bit_string encoder::encode_string(string& str) {
     bit_string ans;
     for (char ch : str) {
         ans.add_code(tree.get_code(ch));
@@ -26,7 +26,7 @@ bit_string encoder::encode_string(string str) {
     return ans;
 }
 
-bit_string encoder::encode_small(std::string str) {
+bit_string encoder::encode_small(std::string& str) {
     add_to_freq(str);
     return encode(str);
 }

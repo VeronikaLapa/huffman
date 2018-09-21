@@ -24,11 +24,11 @@ public:
     huff_tree(const huff_tree& obj);
     huff_tree & operator = (huff_tree other);
     bit_code get_code(char ch);
-    char get_char(bit_string str, size_t& ind);
+    char get_char(bit_string& str, size_t& ind);
     ~huff_tree();
     bit_string to_string();
 private:
-    void build_tree(node* crt_node, bit_string str, size_t& ind, std::vector<node*>& list);
+    void build_tree(node* crt_node, bit_string& str, size_t& ind, std::vector<node*>& list);
     void tree_struct_to_string(node* crt_node, bit_string& order, bit_string& tree);
     void dfs (node* n, bit_code crt_code);
     void build_dict();

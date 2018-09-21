@@ -7,12 +7,12 @@ class encoder {
 public:
     encoder();
 
-    bit_string encode_small(std::string);
+    bit_string encode_small(std::string&);
     bit_string encode(std::string);
 
-    bit_string encode_string(std::string);
+    bit_string encode_string(std::string&);
 
-    void add_to_freq(std::string);
+    void add_to_freq(std::string&);
 
 private:
     char_counter freq;

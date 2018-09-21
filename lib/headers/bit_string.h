@@ -8,7 +8,7 @@ const unsigned int CHAR_SIZE = 8;
 class bit_string{
 public:
     bit_string();
-    bit_string(bit_code code);
+    bit_string(bit_code& code);
     bit_string(std::string, int last_char_length);
     void add_code(bit_code code);
     void add_bit(bool bit);

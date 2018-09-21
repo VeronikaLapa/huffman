@@ -7,7 +7,7 @@ std::string decoder::decode(bit_string str) {
     tree = huff_tree(str, ind);
     return decode_string(str, ind);
 }
-std::string decoder::decode_string(bit_string str, size_t ind) {
+std::string decoder::decode_string(bit_string& str, size_t ind) {
     std::string ans = "";
     while (ind < str.size()) {
         try {

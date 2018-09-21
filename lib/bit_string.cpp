@@ -3,7 +3,7 @@
 
 bit_string::bit_string() : data(), last_char_length(0) {}
 
-bit_string::bit_string(bit_code code) : data(), last_char_length(0) {
+bit_string::bit_string(bit_code& code) : data(), last_char_length(0) {
     add_code(code);
 }
 

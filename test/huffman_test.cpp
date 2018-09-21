@@ -161,3 +161,30 @@ TEST(correctness, big_file2) {
     }
     EXPECT_TRUE(file_comp("3.pdf", "3.res"));
 }
+
+
+TEST(correctness, big_file4) {
+    {
+        file_encoder enc("4.txt", "4.out");
+        enc.encode_all();
+    }
+    {
+        file_decoder dec("4.out", "4.res");
+        dec.decode_all();
+    }
+    EXPECT_TRUE(file_comp("4.txt", "4.res"));
+}
+
+TEST(correctness, empty_file) {
+    {
+        file_encoder enc("empty.in", "empty.out");
+        enc.encode_all();
+    }
+    {
+        file_decoder dec("empty.out", "empty.res");
+        dec.decode_all();
+    }
+    EXPECT_TRUE(file_comp("empty.in", "empty.res"));
+}
+
+
