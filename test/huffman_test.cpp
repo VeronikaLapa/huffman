@@ -69,10 +69,10 @@ TEST(correctness, empty)
 }
 TEST(correctness, one_symbol)
 {
-    encoder en;
-    decoder de;
     std::string str = "";
     for (int i = 0; i < 100; i++) {
+        encoder en;
+        decoder de;
         str.push_back('a');
         EXPECT_EQ(str, de.decode(en.encode_small(str)));
     }

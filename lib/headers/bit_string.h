@@ -12,6 +12,7 @@ public:
     bit_string(std::string, int last_char_length);
     void add_code(bit_code code);
     void add_bit(bool bit);
+    //void add_char(char ch);
     void erase_bit();
     void concat(bit_string& str);
     bool get_bit(size_t i);

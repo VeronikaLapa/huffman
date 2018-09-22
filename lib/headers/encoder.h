@@ -9,7 +9,6 @@ public:
 
     bit_string encode_small(std::string&);
     bit_string encode(std::string);
-
     bit_string encode_string(std::string&);
 
     void add_to_freq(std::string&);

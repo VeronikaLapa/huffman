@@ -3,7 +3,7 @@
 
 using namespace std;
 
-file_reader::file_reader(std::string name) : input_file(name, std::ifstream::binary) {
+file_reader::file_reader(std::string& name) : input_file(name, std::ifstream::binary) {
     if (!input_file) {
         throw file_exc();
     }
@@ -12,26 +12,13 @@ file_reader::file_reader(std::string name) : input_file(name, std::ifstream::bin
 file_reader::~file_reader() {
     input_file.close();
 }
-
-buffer::buffer(size_t n): buf(new char[n]){};
-buffer::~buffer() {
-    delete[](buf);
-}
-char* buffer::get() {
-        return buf;
-};
-
 std::string file_reader::get_string() {
     if (input_file.eof()) {
         return "";
     }
-    size_t BUFFER_SIZE = 1024;
-    buffer b = buffer(BUFFER_SIZE);
-    input_file.read(b.get(), BUFFER_SIZE);
-    std::string ans(b.get(), input_file.gcount());
-
+    input_file.read(buffer, BUFFER_SIZE);
+    std::string ans(buffer, input_file.gcount());
     return ans;
-
 }
 
 bit_string file_reader::get_bit_string() {
@@ -41,9 +28,8 @@ bit_string file_reader::get_bit_string() {
         return bit_string();
     }
     size_t s = (static_cast<unsigned char>(size_buffer[0])<< 8) + static_cast<unsigned char>(size_buffer[1]);
-    buffer b = buffer(s);
-    input_file.read(b.get(), s);
-    bit_string ans(string(b.get(), input_file.gcount()), static_cast<unsigned char>(size_buffer[2]));
+    input_file.read(buffer, s);
+    bit_string ans(string(buffer, input_file.gcount()), static_cast<unsigned char>(size_buffer[2]));
     return ans;
 }
 

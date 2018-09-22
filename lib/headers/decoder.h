@@ -10,7 +10,6 @@ public:
     std::string decode(bit_string);
     std::string decode_string(bit_string&, size_t ind = 0);
 private:
-
     huff_tree tree;
 };
 

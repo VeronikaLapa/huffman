@@ -2,7 +2,7 @@
 #include "file_exceptions.h"
 using namespace std;
 
-file_writer::file_writer(std::string name) :output_file(name, std::ofstream::binary){
+file_writer::file_writer(std::string& name) :output_file(name, std::ofstream::binary){
     if (!output_file) {
         throw file_exc();
     }

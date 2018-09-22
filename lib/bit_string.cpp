@@ -12,6 +12,7 @@ void bit_string::add_code(bit_code code) {
         add_bit(code.last_bit());
         code.erase_bit();
     }
+
 }
 
 void bit_string::add_bit(bool bit) {

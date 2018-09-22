@@ -10,6 +10,13 @@ public: virtual const char* what() const throw() {
     }
 };
 
+class bad_operation: public std::exception
+{
+public: virtual const char* what() const throw() {
+        return "tree was already built";
+    }
+};
+
 class bit_string_out_of_bounds: public std::exception
 {
 public:    virtual const char* what() const throw() {

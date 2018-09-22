@@ -7,20 +7,14 @@
 
 class file_reader {
 public:
-    file_reader(std::string name);
+    file_reader(std::string& name);
     ~file_reader();
     std::string get_string();
     bit_string get_bit_string();
     void move_to_begin();
+    size_t BUFFER_SIZE = 1024;
 private:
     std::ifstream input_file;
-};
-class buffer{
-public:
-    buffer(size_t n);
-    ~buffer();
-    char* get();
-private:
-    char* buf;
+    char buffer[2048];
 };
 #endif //FILE_READER_H

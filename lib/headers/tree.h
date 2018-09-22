@@ -27,6 +27,7 @@ public:
     char get_char(bit_string& str, size_t& ind);
     ~huff_tree();
     bit_string to_string();
+    bool is_empty() {return root==nullptr;}
 private:
     void build_tree(node* crt_node, bit_string& str, size_t& ind, std::vector<node*>& list);
     void tree_struct_to_string(node* crt_node, bit_string& order, bit_string& tree);

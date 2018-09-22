@@ -7,7 +7,7 @@
 
 class file_writer {
 public:
-    file_writer(std::string name);
+    file_writer(std::string& name);
     ~file_writer();
     void write_string(std::string&);
     void write_bit_string(bit_string&);

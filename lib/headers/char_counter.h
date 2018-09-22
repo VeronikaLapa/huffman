@@ -12,6 +12,6 @@ public:
     void add_char(unsigned char ch);
     unsigned long long char_amt(unsigned char ch);
 private:
-    std::vector<unsigned long long> data;
+    unsigned long long data[256];
 };
 #endif //CHAR_COUNTER_H

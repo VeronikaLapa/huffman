@@ -1,17 +1,24 @@
 #include "encoder.h"
 #include <iostream>
+#include "file_exceptions.h"
 using namespace std;
 encoder::encoder() {}
 
 void encoder::add_to_freq(string& str) {
+    if (!tree.is_empty()) {
+        throw bad_operation();
+    }
     for (char ch : str) {
         freq.add_char(ch);
     }
 }
 
 bit_string encoder::encode(string str) {
-    tree = huff_tree(freq);
-    bit_string ans = tree.to_string();
+    bit_string ans = bit_string();
+    if (tree.is_empty()) {
+        tree = huff_tree(freq);
+        ans = tree.to_string();
+    }
     bit_string enc_string = encode_string(str);
     ans.concat(enc_string);
     ans.to_debug_string();
