@@ -8,12 +8,12 @@ public:
     encoder();
 
     bit_string encode_small(std::string&);
-    bit_string encode(std::string);
-    bit_string encode_string(std::string&);
+    bit_string encode(std::string&);
 
     void add_to_freq(std::string&);
 
 private:
+    bit_string encode_string(std::string&);
     char_counter freq;
     huff_tree tree;
 };

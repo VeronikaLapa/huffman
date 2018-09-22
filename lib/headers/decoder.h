@@ -8,8 +8,8 @@ class decoder {
 public:
     decoder();
     std::string decode(bit_string);
-    std::string decode_string(bit_string&, size_t ind = 0);
 private:
+    std::string decode_string(bit_string&, size_t ind = 0);
     huff_tree tree;
 };
 

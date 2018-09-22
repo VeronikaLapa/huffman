@@ -1,11 +1,12 @@
 #include "file_encoder.h"
 void file_encoder::encode_all() {
-    std::string str = "a";
-    bit_string res = enc.encode("");
+    std::string str = "";
+    bit_string res = enc.encode(str);
+    str = "a";
     output.write_bit_string(res);
     while (str != "") {
         str = input.get_string();
-        bit_string res = enc.encode_string(str);
+        bit_string res = enc.encode(str);
         output.write_bit_string(res);
     }
 }

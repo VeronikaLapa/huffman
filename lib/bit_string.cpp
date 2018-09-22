@@ -13,33 +13,6 @@ void bit_string::add_code(bit_code code) {
         add_bit(code.last_bit());
         code.erase_bit();
     }
-
-/*
-    code.reverse();
-    unsigned long long value = code.get_value();
-    int s = code.size();
-    if (s < (8 - last_char_length)&& last_char_length != 0) {
-        data[data.size() - 1] = data[data.size() - 1] | (value << last_char_length);
-        last_char_length += s;
-        return;
-    }
-    if (s > (8 - last_char_length) && last_char_length != 0) {
-        data[data.size() - 1] = data[data.size() - 1] | (value << last_char_length);
-        value = value >> (8 - last_char_length);
-        s -= (8 - last_char_length);
-    }
-    while (s > 8) {
-        data.push_back(255 & value);
-        value = value >> 8;
-        s -= 8;
-    }
-    if (s > 0) {
-        data.push_back(value);
-        last_char_length = s;
-    } else {
-        last_char_length = 8;
-    }
-*/
 }
 
 void bit_string::add_bit(bool bit) {

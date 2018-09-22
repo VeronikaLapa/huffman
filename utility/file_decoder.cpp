@@ -8,7 +8,7 @@ void file_decoder::decode_all() {
     std::string res = "a";
     while (!res.empty()) {
         str = input.get_bit_string();
-        res = dec.decode_string(str);
+        res = dec.decode(str);
         output.write_string(res);
     }
 }
