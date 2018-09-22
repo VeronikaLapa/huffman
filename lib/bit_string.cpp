@@ -3,7 +3,7 @@
 
 bit_string::bit_string() : data(), last_char_length(0) {}
 
-bit_string::bit_string(bit_code& code) : data(), last_char_length(0) {
+bit_string::bit_string(bit_code &code) : data(), last_char_length(0) {
     add_code(code);
 }
 
@@ -15,18 +15,32 @@ void bit_string::add_code(bit_code code) {
     }
 
 /*
-    unsigned long long value  = code.get_value();
-    if (last_char_length == 0) {
-        data.push_back(0);
+    code.reverse();
+    unsigned long long value = code.get_value();
+    int s = code.size();
+    if (s < (8 - last_char_length)&& last_char_length != 0) {
+        data[data.size() - 1] = data[data.size() - 1] | (value << last_char_length);
+        last_char_length += s;
+        return;
     }
-    while (value != 0) {
-        data[data.size() - 1] = data[data.size() - 1] | (value & (255 - (1<< last_char_length - 1)));
+    if (s > (8 - last_char_length) && last_char_length != 0) {
+        data[data.size() - 1] = data[data.size() - 1] | (value << last_char_length);
         value = value >> (8 - last_char_length);
-        data.push_back((1<< last_char_length - 1) & value);
+        s -= (8 - last_char_length);
     }
-    last_char_length = (code.size() - last_char_length) % 8;
+    while (s > 8) {
+        data.push_back(255 & value);
+        value = value >> 8;
+        s -= 8;
+    }
+    if (s > 0) {
+        data.push_back(value);
+        last_char_length = s;
+    } else {
+        last_char_length = 8;
+    }
 */
- }
+}
 
 void bit_string::add_bit(bool bit) {
     char b = static_cast<char>(bit);
@@ -48,7 +62,7 @@ void bit_string::erase_bit() {
     }
 }
 
-void bit_string::concat(bit_string& str) {
+void bit_string::concat(bit_string &str) {
     for (size_t i = 0; i < str.size(); i++) {
         add_bit(str.get_bit(i));
     }
@@ -68,7 +82,7 @@ bool bit_string::get_bit(size_t i) {
     } else {
         size_t char_ind = i / CHAR_SIZE;
         size_t char_pos = i % CHAR_SIZE;
-        return ((data[char_ind] & (1 << char_pos))!= 0);
+        return ((data[char_ind] & (1 << char_pos)) != 0);
     }
 }
 
@@ -90,6 +104,7 @@ bit_string::bit_string(std::string str, int length) : data(std::move(str)), last
 std::string bit_string::to_string() {
     return data;
 }
+
 int bit_string::get_last_length() {
     return last_char_length;
 }
