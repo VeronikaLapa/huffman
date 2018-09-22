@@ -67,12 +67,12 @@ huff_tree::huff_tree(bit_string& str, size_t &ind) {
         root = new node();
         vector<node *> list;
         build_tree(root, str, ++ind, list);
-        for (size_t i = 0; i < list.size(); i++) {
+        for (node* n: list) {
             char symb = 0;
             for (size_t pos = 0; pos < CHAR_SIZE; pos++) {
                 symb = (symb << 1) + str.get_bit(ind++);
             }
-            list[i]->symbol = symb;
+            n->symbol = symb;
 
         }
     }
