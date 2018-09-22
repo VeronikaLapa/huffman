@@ -15,4 +15,12 @@ public:
 private:
     std::ifstream input_file;
 };
+class buffer{
+public:
+    buffer(size_t n);
+    ~buffer();
+    char* get();
+private:
+    char* buf;
+};
 #endif //FILE_READER_H
