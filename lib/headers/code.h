@@ -6,9 +6,9 @@
 struct bit_code {
 public:
 	bit_code();
-	bit_code(char ch);
+	bit_code(unsigned char ch);
 	unsigned long long get_value() {return code;}
-//	bit_code(unsigned long long code, size_t  length);
+	bit_code(unsigned long long c, size_t  l): code(c), length(l){};
 	void add_bit(bool bit);
 	void erase_bit();
 	size_t size();

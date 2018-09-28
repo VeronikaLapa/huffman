@@ -2,7 +2,7 @@
 #include "bit_string.h"
 bit_code::bit_code() : code(0), length(0) {}
 
-bit_code::bit_code(char ch) :code(ch), length(8){}
+bit_code::bit_code(unsigned char ch) :code(ch), length(8){}
 
 void bit_code::add_bit(bool bit) {
     code += static_cast<int>(bit) << (length++);

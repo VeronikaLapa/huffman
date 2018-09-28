@@ -70,7 +70,7 @@ huff_tree::huff_tree(bit_string& str, size_t &ind) {
         for (node* n: list) {
             char symb = 0;
             for (size_t pos = 0; pos < CHAR_SIZE; pos++) {
-                symb = (symb << 1) + str.get_bit(ind++);
+                symb += str.get_bit(ind++) << pos;
             }
             n->symbol = symb;
 
@@ -128,7 +128,6 @@ void huff_tree::dfs(node *n, bit_code crt_code) {
         crt_code.erase_bit();
     }
     if (n->is_leaf()) {
-        crt_code.reverse();
         dict.insert({n->symbol, crt_code});
     }
 }
